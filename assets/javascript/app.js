@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Global Variables
-    var counter = 30;
+    var counter = 5;
     var currentQuestion = 0;
     var score = 0;
     var lost = 0;
@@ -40,8 +40,51 @@ $(document).ready(function () {
 
     ];
 
+    // function to go to next question in currentQuestion array
+    function nextQuestion() {
+
+        // if there's no more questions the game is over
+        var isQuestionOver = (quizQuestions.length - 1) === currentQuestion;
+        if (isQuestionOver) {
+            console.log("Game is over!!!");
+        }
+
+        // if there's more questions it will go to the next one
+        else {
+            currentQuestion++;
+            loadQuestion();
+        }
+    }
+
+    // Start a timer for each question
+
+    // ability to clear the timer
+    function timeUp() {
+        clearInterval(timer);
+
+        // if the user doesn't answer their lost counter goes up
+        lost++;
+
+        // loads the next Question
+        nextQuestion();
+    }
+
+    // Counts the timer down and stops when it equals zero
+    function countDown() {
+        counter--;
+
+        $('#time').html('Timer: ' + counter);
+
+        if (counter === 0) {
+            timeUp();
+        }
+    }
+
     //Display Questions and Choices in Browser
     function loadQuestion() {
+        counter = 5;
+        timer = setInterval(countDown, 1000);
+
         var question = quizQuestions[currentQuestion].question;
         var choices = quizQuestions[currentQuestion].choices;
 
@@ -61,6 +104,15 @@ $(document).ready(function () {
 
         return result;
     }
+
+    // Whenever an answer is clicked is it correct or incorrect?
+
+    // Even Delegation (document meaning any element in the document with the class of choice)
+    $(document).on('click', '.choice', function () {
+        // this, represents every element that we click on, every element that has the class of choice
+        var selectedAnswer = $(this).attr('data-answer');
+        console.log("YAY!", selectedAnswer);
+    });
 
     loadQuestion();
 
