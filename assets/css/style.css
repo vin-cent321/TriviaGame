@@ -1,3 +1,33 @@
+body {
+    text-align: center;
+}
+
+.jumbotron {
+    height: 350px;
+    background-image: url(../images/clouds.png);
+     
+    background-repeat: repeat; 
+    background-size: cover;
+}
+
+#logo {
+    width: 300px;
+    height: 150px;
+}
+
+#triviaText {
+    font-size: 30px;
+}
+
+.coin {
+    width: 50px;
+    height: 50px;
+}
+
+#start {
+    margin-top: 15px;
+}
+
 .choice {
     border: 1px solid lightgrey;
     padding: 10px;

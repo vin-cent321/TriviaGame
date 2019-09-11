@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Global Variables
-    var counter = 5;
+    var counter = 15;
     var currentQuestion = 0;
     var score = 0;
     var lost = 0;
@@ -38,18 +38,37 @@ $(document).ready(function () {
             correctAnswer: "Donkey Kong"
         },
 
+        {
+            question: "What was Bowser's original name?",
+            choices: ["The Koopa King", "King Koopa", "Koopa Troopa", "Lead Koopa"],
+            correctAnswer: "King Koopa"
+        },
+
+        {
+            question: "In Twilight Princess, what animal is Link transformed into?",
+            choices: ["Wolf", "Rat", "Ape", "Hawk"],
+            correctAnswer: "Wolf"
+        },
+
+        {
+            question: "How many Gym Badges must a trainer collect before challenging the Elite Four in Pokemon?",
+            choices: ["6", "8", "7", "9"],
+            correctAnswer: "8"
+        },
+
     ];
 
     var winImages = [
         './assets/images/linkwin.gif',
-        './assets/images/mariowin.gif'
+        './assets/images/mariowin.gif',
+        './assets/images/haunterwin.gif'
     ];
 
     var lossImages = [
         './assets/images/bowserlose.gif',
-        './assets/images/ganonlose.gif'
+        './assets/images/ganonlose.gif',
+        './assets/images/pikachulose.gif',
     ];
-
 
     // function to go to next question in currentQuestion array
     function nextQuestion() {
@@ -96,7 +115,7 @@ $(document).ready(function () {
 
     //Display Questions and Choices in Browser
     function loadQuestion() {
-        counter = 5;
+        counter = 15;
         timer = setInterval(countDown, 1000);
 
         var question = quizQuestions[currentQuestion].question;
@@ -108,6 +127,7 @@ $(document).ready(function () {
         ${loadChoices(choices)}
         ${loadRemainingQuestion()}
     `);
+        $('audio#theme')[0].play();
     }
 
     function loadChoices(choices) {
@@ -150,7 +170,7 @@ $(document).ready(function () {
         var result = `
             <p>You got ${score} question(s) right!</p>
             <p>You missed ${lost} question(s)!</p>
-            <p>Total questions ${quizQuestions.length} question(s) right!</p>
+            <p>Score: ${score}/${quizQuestions.length}</p>
             <button class="btn btn-primary" id="reset"> Reset Game</button>
         `;
 
@@ -159,7 +179,7 @@ $(document).ready(function () {
 
     // reset game button
     $(document).on('click', '#reset', function () {
-        counter = 5;
+        counter = 15;
         currentQuestion = 0;
         score = 0;
         lost = 0;

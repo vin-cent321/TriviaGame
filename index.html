@@ -11,22 +11,30 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
-    <title>Trivia Game</title>
+    <title>Nintendo Trivia Game</title>
 </head>
 
 <body>
     <div class="container">
 
         <div class="jumbotron">
-            <h1>Trivia Game</h1>
+            <img src="assets/images/nintendo.png" id="logo" />
+            <div id="triviaText">
+                <img src="assets/images/coin.gif" class="coin floatLeft" />
+                Trivia Game
+                <img src="assets/images/coin.gif" class="coin floatRight" />
+            </div>
             <button type="button" class="btn btn-primary" id="start">Start Game</button>
         </div>
 
+        <audio id="theme">
+            <source src="assets/images/theme.mp3" type="audio/mp3">
+        </audio>
         <h2 id="time"></h2>
         <div id="game"></div>
 
     </div>
-    
+
 </body>
 
 </html>
